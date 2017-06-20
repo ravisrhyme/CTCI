@@ -22,6 +22,10 @@ Space complexity = O(1)
 
 XOR bitwise operation helps here !! 
 """
+__author__  = "Ravi Kiran Chadalawada"
+__email__   = "rchadala@usc.edu"
+__credits__ = ["Interviewcake.com"]
+__status__  = "Prototype"
 
 def find_unique(ids):
 	
