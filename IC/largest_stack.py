@@ -4,6 +4,11 @@ You want to be able to access the largest element in a stack.
 Implement a new class MaxStack with a function get_max() that returns the largest
 element in the stack. get_max() should not remove the item.
 """
+__author__  = "Ravi Kiran Chadalawada"
+__email__   = "rchadala@usc.edu"
+__credits__ = ["Interviewcake.com"]
+__status__  = "Prototype"
+
 
 class max_stack:
 	def __init__(self):
