@@ -15,7 +15,8 @@ returns a list of condensed ranges
 
 [(0, 1), (3, 5), (4, 8), (10, 12), (9, 10)] => [(0, 1), (3, 8), (9, 12)]
 
-Complexity : O(nlogn)
+Time Complexity  : O(nlogn)
+Space Complexity : O(n) in worst case
 
 """
 __author__  = "Ravi Kiran Chadalawada"
@@ -28,7 +29,7 @@ end = 1
 
 def merge_ranges(slots):
 	global start,end
-	slots.sort(key=lambda tup:tup[0])
+	slots.sort(key=lambda tup:tup[0]) # sorting on starting time.
 	print(slots)
 	length = len(slots)
 	result = [list(slots[0])]
@@ -36,10 +37,10 @@ def merge_ranges(slots):
 	i = 1
 	while i < length:
 		if 	slots[i][start] <= result[k][end]:
-			if slots[i][end] > result[k][end]:
+			if slots[i][end] > result[k][end]: 
 				result[k][end] = slots[i][end]
 			#else:
-				# Do nothing
+				# Do nothing as slots[i] is covered by duration of result[k]
 		else:			
 			k = k+1;
 			result.append(list(slots[i]))

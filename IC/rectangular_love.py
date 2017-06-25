@@ -18,6 +18,9 @@ Rectangle is defined as dictionary like below:
     'height': 4,
 
 	}
+
+Time Complexity  = O(1)
+Space Complexity = O(1)
 """
 __author__  = "Ravi Kiran Chadalawada"
 __email__   = "rchadala@usc.edu"
@@ -63,7 +66,7 @@ def x_intersection(x1,width1,x2,width2):
 	left_end = max(x1,x2)
 	right_end = min (x1+width1,x2+width2)
 	
-	if right_end <= x2:
+	if right_end <= x2: # Handles #3 and #4 cases
 		return None, None
 	return left_end, right_end
 
@@ -75,7 +78,7 @@ def y_intersection(y1,height1,y2,height2):
 	bottom_end = max(y1,y2)
 	top_end    = min(y1+height1,y2+height2)
 	
-	if top_end <= y2:
+	if top_end <= y2: #Handles #3 and #4 cases
 		return None, None
 	return bottom_end,top_end
 

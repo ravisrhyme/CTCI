@@ -1,5 +1,7 @@
 """
-Write a function to check that a binary tree ↴ is a valid binary search tree 
+Write a function to check that a binary tree is a valid binary search tree
+Time Complexity = O(n) 
+Space complexity = O(log(n)) if tree is balanced/ O(h) else where 'h' is height
 """
 
 __author__  = "Ravi Kiran Chadalawada"

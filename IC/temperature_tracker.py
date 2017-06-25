@@ -12,6 +12,11 @@ the insert() function.
 
 """
 
+__author__  = "Ravi Kiran Chadalawada"
+__email__   = "rchadala@usc.edu"
+__credits__ = ["Interviewcake.com"]
+__status__  = "Prototype"
+
 class TempTracker:
 	"""class to track temperatures
 	Follows Ahead fof time approach for this usecase instead of
@@ -36,17 +41,21 @@ class TempTracker:
 	
 	def insert(self,temp):
 
+		#Keeping track of mode
 		self.frequency[temp] += 1
 		if self.max_frequency < self.frequency[temp]:
 			self.max_frequency = self.frequency[temp]
 			self.mode = temp
 
+		#Keeping track of Max
 		if (self.max is None) or (self.max < temp):
 			self.max = temp
 
+		#Keeping track of min
 		if (self.min is None) or (self.min > temp):
 			self.min = temp
 		
+		#keeping track of mean
 		self.sum += temp
 		self.no_of_samples +=1
 		self.mean = (self.sum/self.no_of_samples)
