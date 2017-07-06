@@ -10,6 +10,8 @@ Ideas that need to be derived and shaped while solving problems.
 The interpretation of list as linked list and interpretation of node
 and content of node as the indication of another pointer is the first step.
 
+We traverse list as if it is a linkedlist
+
 """
 __author__  = "Ravi Kiran Chadalawada"
 __email__   = "rchadala@usc.edu"
