@@ -1,3 +1,12 @@
+"""
+Implementation of BST and Traversals
+"""
+
+__author__  = "Ravi Kiran Chadalawada"
+__email__   = "rchadala@usc.edu"
+__credits__ = ["Inventor of BST"]
+__status__  = "Prototype"
+
 class Node:
     def __init__(self, val):
         self.l_child = None
@@ -23,13 +32,13 @@ def in_order_print(root):
     if not root:
         return
     in_order_print(root.l_child)
-    print root.data
+    print(root.data)
     in_order_print(root.r_child)
 
 def pre_order_print(root):
     if not root:
         return        
-    print root.data
+    print(root.data)
     pre_order_print(root.l_child)
     pre_order_print(root.r_child)  
 
@@ -42,8 +51,8 @@ r.r_child.l_child = Node(5)
 #binary_insert(r, Node(1))
 #binary_insert(r, Node(5))
 
-print "Inorder traversal"
+print("Inorder traversal")
 in_order_print(r)
 
-print "Preorder traversal"
+print("Preorder traversal")
 pre_order_print(r)
