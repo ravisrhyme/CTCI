@@ -3,6 +3,10 @@ Design an algorithm and write code to find the first common ancestor of two
 nodes in a binary tree. Avoid storing additional nodes in a data structure.
 
 Note: This is not a BST.
+
+Time complexity : O(n)
+Space Complexity : O(logn) for balanced Binary tree
+				   O(n) for for not balanced trees
 """
 __author__  = "Ravi Kiran Chadalawada"
 __email__   = "rchadala@usc.edu"
