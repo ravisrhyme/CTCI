@@ -19,7 +19,7 @@ class hash_table:
 	def insert(self,string):
 		""" Inserts a string after getting its hash value in to table.
 		"""
-		index = self.find_hash(string)
+		index = self.shift_and_add_hash(string)
 		print('index is ', index)
 		# Appending string to list of values at index
 		self.table[index].append(string)
@@ -27,14 +27,80 @@ class hash_table:
 	def lookup(self,string):
 		""" Returns a boolean basing on presence or absence of string at index
 		"""
-		index = self.find_hash(string)
+		index = self.shift_and_add_hash(string)
 		print('index is ', index)
 		if string in self.table[index]:
 			return True
 		else:
-			return False 
+			return False
 
-	def find_hash(self,string):
+	def additive_hash(self,string):
+		"""Implementation of additive hash
+		"""
+		h = ord(string[0])
+		length_of_string = len(string)
+
+		for i in range(1,length_of_string):
+			h +=  ord(string[i])
+		
+		return h % table_size
+
+	def xor_hash(self,string):
+		""" Implementation of XOR hashing algorithm
+		"""
+		h = ord(string[0])
+		length_of_string = len(string)
+		
+		for i in range(1,length_of_string):
+			h ^=  ord(string[i])
+		
+		return h % table_size
+
+	def rotating_hash(self,string):
+		"""Implementation of rotating hashing algorithm
+		"""
+		h = ord(string[0])
+		length_of_string = len(string)
+
+		for i in range(1,length_of_string):
+			h =  (h << 4) ^ (h >> 28) ^ ord(string[i])
+
+		return h % table_size
+
+	def bernstein_hash(self,string):
+		"""Implementation of bernstein hashing algorithm
+		"""
+		h = ord(string[0])
+		length_of_string = len(string)
+
+		for i in range(1,length_of_string):
+			h = 33 * h + p[i];
+
+		return h % table_size
+
+	def modified_bernstein_hash(self,string):
+		"""Implementation of modified bernstein hashing algorithm
+		"""
+		h = ord(string[0])
+		length_of_string = len(string)
+
+		for i in range(1,length_of_string):
+			h = 33 * h ^ ord(string[i]);
+
+		return h % table_size
+
+	def shift_add_xor_hash(self,string):
+		"""Implementation of shift-add-XOR hashing algorithm
+		"""
+		h = ord(string[0])
+		length_of_string = len(string)
+
+		for i in range(1,length_of_string):
+			h ^= (h << 5) + (h >> 2) + ord(string[i]);
+
+		return h % table_size
+
+	def shift_and_add_hash(self,string):
 		""" Computes and returns hash index for a given string.
 		Has two components : 
 		1. calculating hash code(unbounded i.e h)
