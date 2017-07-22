@@ -13,6 +13,10 @@ Time complexity : O(n) in brute force.
 
 Space complexity : O(1) 
 """
+__author__  = "Ravi Kiran Chadalawada"
+__email__   = "rchadala@usc.edu"
+__credits__ = ["Cracking The coding interview"]
+__status__  = "Prototype"
 
 def find_magic_binary_distinct(sorted_array):
 	""" Returns the magic number by performing a binary search
