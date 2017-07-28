@@ -9,7 +9,7 @@ __credits__ = ["Steven Skiena","Guido van Rossum"]
 __status__  = "Prototype"
 
 def bfs_iterative(graph,start):
-	""" Prints all the reachable nodes from the start by BFS traversal
+	""" Prints all the reachable nodes from the given start by BFS traversal
 	"""
 	visited = set()
 	watched = set()
@@ -25,13 +25,56 @@ def bfs_iterative(graph,start):
 		for adjacent_node in graph[current_node]:
 			if (adjacent_node not in watched) and (adjacent_node not in visited):
 				nodes_queue.append(adjacent_node)
-				path.add(adjacent_node)
+				#path.add(adjacent_node)
 
 
-def find_path_bfs(graph,start,path = []):
+def find_path_bfs(graph,start,end):
+	""" Prints one path between two nodes i.e start and end using BFS
+	"""
 	
-	return path
+	visited = set()
+	watched = set()
 
+	watched.add(start)
+
+	nodes_queue = [(start,[start])]
+	while nodes_queue:
+		current_node, path = nodes_queue.pop(0)
+
+		visited.add(current_node)
+
+		if (current_node == end):
+			return path
+
+		for adjacent_node in graph[current_node]:
+			if (adjacent_node not in watched) and (adjacent_node not in visited):
+				nodes_queue.append((adjacent_node, path+[adjacent_node]))
+
+	return None
+
+def find_path_all_bfs(graph,start,end):
+	"""Prints all paths between two nodes i.e start and end using BFS
+	"""
+	visited = set()
+	watched = set()
+	paths = []
+
+	watched.add(start)
+
+	nodes_queue = [(start,[start])]
+	while nodes_queue:
+		current_node, path = nodes_queue.pop(0)
+
+		visited.add(current_node)
+
+		if (current_node == end):
+			paths.append(path)
+
+		for adjacent_node in graph[current_node]:
+			if (adjacent_node not in watched) and (adjacent_node not in visited):
+				nodes_queue.append((adjacent_node, path+[adjacent_node]))
+
+	return paths
 
 	
 if __name__ == '__main__':
@@ -43,4 +86,6 @@ if __name__ == '__main__':
              'E': ['F'],
              'F': ['C']}
 
-	bfs_iterative(graph,'E')
+	#bfs_iterative(graph,'E')
+	print("One path :",find_path_bfs(graph,'A','D'))
+	print("All paths :",find_path_all_bfs(graph,'A','D'))
