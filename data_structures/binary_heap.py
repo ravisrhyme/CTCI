@@ -10,7 +10,7 @@ Space Complexity : O(n)
 """
 __author__  = "Ravi Kiran Chadalawada"
 __email__   = "rchadala@usc.edu"
-__credits__ = ["Algorithm Design Manual"]
+__credits__ = ["Algorithm Design Manual","interactivepython.org"]
 __status__  = "Prototype"
 
 
