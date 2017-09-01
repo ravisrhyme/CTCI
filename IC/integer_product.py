@@ -33,9 +33,31 @@ def integer_product(arg):
 		result.append(temp1[k] * temp2[k])
 	return result
 
+def integer_product_improved(given_list):
+	""" This is an improved version of integer_product().
+	we use only one list to compute in O(n) time instead of 
+	three in integer_product(). We only store the products 
+	before each index.
+	"""
+	list_of_product_before_index = []
+	product_before = 1
+
+	for i in range(0,len(given_list)):
+		list_of_product_before_index.append(product_before)
+		product_before *= given_list[i]
+
+	product_after = 1
+	for i in range(len(given_list)-1,-1,-1):
+		list_of_product_before_index[i] *= product_after
+		product_after *= given_list[i]
+
+		
+	return list_of_product_before_index
+
 
 #test cases
-#if __init__ == "__main__":
-list = [1,7,3,4,10,12,14]
-print(integer_product(list))
+if __name__ == "__main__":
+	integer_list = [1,7,2,4]
+	print(integer_list)
+	print(integer_product_improved(integer_list))
 
