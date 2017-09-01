@@ -39,6 +39,10 @@ def integer_product_improved(given_list):
 	three in integer_product(). We only store the products 
 	before each index.
 	"""
+
+	if len(given_list) < 2:
+		raise IndexError('Getting the product of numbers at other indices requires at least 2 numbers')
+
 	list_of_product_before_index = []
 	product_before = 1
 
