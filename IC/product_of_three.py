@@ -18,7 +18,7 @@ def product_of_three(given_list):
 	"""
 
 	if len(given_list) < 3:
-		raise IndexError("List should have atleast 3 members")
+		raise Exception("List should have atleast 3 members")
 
 	highest_1 = highest_2 = highest_3 = 0
 	lowest_1 = lowest_2 = 0
