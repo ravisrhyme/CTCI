@@ -13,72 +13,66 @@ __status__  = "Prototype"
 import json
 import sys
 
-# Implement the class below, keeping the constructor's signature unchanged; it should take no arguments.
-
 class MarkingPositionMonitor:
     def __init__(self):
         self.marking_position = {}
         self.order_info = {}
     
     def on_event(self, message):
-        "Returns the marking position monitor for a symbol"
-        message = json.loads(message)
-        if message["type"] == 'NEW':
-            self.process_new(message)
-
-        order_id = message['order_id']
+        message_dict = json.loads(message)
+        
+        if message_dict['type'] == 'NEW':
+            self.process_new(message_dict)
+            
+        order_id = message_dict['order_id']
         first_message = self.order_info[order_id]
         symbol = first_message['symbol']
-  
-        if message['type'] == 'CANCEL_ACK':
+        
+        if message_dict['type'] == 'CANCEL_ACK':
             self.process_cancel_ack(order_id,symbol)
             
-        if message['type'] == 'ORDER_REJECT':
-            "increase the position in sales order"
+        if message_dict['type'] == 'ORDER_REJECT':
             self.process_order_reject(order_id,symbol)
-             
-        if message['type'] == 'ORDER_ACCEPT':
-            "Increase the position in buy order"
-            self.process_order_accept(order_id,symbol)
             
-        if message['type'] == 'FILL':
-            filled_quantity = message['filled_quantity']
-            self.process_fill(order_id,symbol,filled_quantity)
+        if message_dict['type'] == 'FILL':
+            filled_quantity = message_dict['filled_quantity']
+            remaining_quantity = message_dict['remaining_quantity']
+            self.process_fill(order_id,symbol,filled_quantity,remaining_quantity)
             
-        
+        #if message_dict['type'] == 'ORDER_ACCEPT':
+            #self.process_order_accept(order_id,symbol)
+            
         return self.marking_position[symbol]
-        
+    
     def process_new(self,message):
         self.order_info[message['order_id']] = message
-        
-        if  message['symbol'] not in self.marking_position:
+        if message['symbol'] not in self.marking_position:
             self.marking_position[message['symbol']] = 0
             
         if message['side'] == 'SELL':
             self.marking_position[message['symbol']] -= message['quantity']
-                               
+            
     def process_cancel_ack(self,order_id,symbol):
+        
         order = self.order_info[order_id]
+        
         if order['side'] == 'SELL':
             self.marking_position[symbol] += order['quantity']
-                    
+            
     def process_order_reject(self,order_id,symbol):
         order = self.order_info[order_id]
         
         if order['side'] == 'SELL':
             self.marking_position[symbol] += order['quantity']
-            
-    def process_order_accept(self,order_id,symbol):
-        #order = self.order_info[message['order_id']]
-        #if order['side'] is 'BUY':
-            #self.marking_position[order['symbol']] += order['quantity']
-        pass
-        
-    def process_fill(self,order_id,symbol,filled_quantity):
+    
+    
+    def process_fill(self,order_id,symbol,filled_quantity,remaining_quantity):
         order = self.order_info[order_id]
         
         if order['side'] == 'BUY':
             self.marking_position[symbol] += filled_quantity
+            
+        order['quantity'] = remaining_quantity
 
 
 if __name__== '__main__':
