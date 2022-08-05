@@ -3,7 +3,7 @@ Program to create new cross namespace.
 Demo of using unshare() system call provided by linux.
 unshare() helps in creating an isolated namespace from parent.
 
-Need to compiled binary as root to see namespace creation
+Need to run binary as root to see namespace creation
 
 Credits : Mahmud Ridwan
 *****************************************************************/

@@ -1,7 +1,7 @@
 /****************************************************************
 Program to create new UTS namespace.
 
-Need to compiled binary as root to see namespace creation
+Need to run binary as root to see namespace creation
 
 Credits : Mahmud Ridwan
 *****************************************************************/
